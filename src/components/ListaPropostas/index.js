@@ -1,9 +1,15 @@
-import { Component } from "react";
+import "./ListaPropostas.css";
+import CardProposta from "../CardProposta";
+import propostas from "../../service/propostas.json";
 
-class ListaPropostas extends Component{
+const ListaPropostas = () => {
+	return (
+		<div className="propostas">
+			{propostas.map((p) => (
+				<CardProposta props={p} />
+			))}
+		</div>
+	);
+};
 
-    return()
-
-}
-
-export default ListaPropostas
+export default ListaPropostas;

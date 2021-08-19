@@ -1,9 +1,8 @@
 import React from "react";
 import "./Header.css";
 import Logo from "../../assets/logo.png";
-import { HiLogout } from "react-icons/hi";
 
-const Header = () => {
+export default () => {
 	return (
 		<header>
 			<div className="header--logo">
@@ -13,15 +12,11 @@ const Header = () => {
 			</div>
 			<div className="header--itens">
 				<a href="/">Minhas Propostas</a>
-				<a href="/">Nova Proposta</a>
-
-				<a href="/" className="logout">
-					<HiLogout />
-					Logout
-				</a>
+				<a href="/">Crias Nova Proposta</a>
+			</div>
+			<div className="header--logout">
+				<a href="/">Logout</a>
 			</div>
 		</header>
 	);
 };
-
-export default Header;
