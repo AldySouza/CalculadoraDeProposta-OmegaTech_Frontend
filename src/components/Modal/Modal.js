@@ -5,7 +5,6 @@ import { AiOutlineClose, AiOutlineCalculator } from "react-icons/ai";
 import "./Modal.css";
 
 function Modal({ children, open, setOpen, data }) {
-	console.log(data);
 	if (open)
 		return (
 			<div className="overlay">

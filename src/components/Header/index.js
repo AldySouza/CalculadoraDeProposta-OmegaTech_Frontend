@@ -13,9 +13,15 @@ const Header = () => {
 			</div>
 			<div className="header--itens">
 				<a href="/">Minhas Propostas</a>
-				<a href="/">Nova Proposta</a>
+				<a href="/create">Nova Proposta</a>
 
-				<a href="/" className="logout">
+				<a
+					href="/"
+					className="logout"
+					onClick={() => {
+						localStorage.clear();
+					}}
+				>
 					<HiLogout />
 					Logout
 				</a>

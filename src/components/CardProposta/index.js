@@ -1,4 +1,7 @@
-import React, { useState } from "react";
+import React, { Component, useState } from "react";
+import { api } from "../../service/api";
+import StoreContext from "../Store/Context";
+import { useContext } from "react";
 import { AiOutlineDollarCircle, AiOutlineCalculator } from "react-icons/ai";
 import { BsLightningFill, BsCalendar } from "react-icons/bs";
 import { SiGooglemaps } from "react-icons/si";
@@ -7,6 +10,8 @@ import Modal from "../Modal/Modal";
 import "./CardProposta.css";
 
 const CardProposta = ({ props }) => {
+	const { token } = useContext(StoreContext);
+
 	function consumoTotal() {
 		const consumoTotal = props.cargas
 			.map((c) => c.consumo_kwh)
@@ -15,9 +20,38 @@ const CardProposta = ({ props }) => {
 			});
 		return consumoTotal;
 	}
+
 	function handleClick() {
 		setOpen(true);
 	}
+
+	function excluirProposta() {
+		window.confirm(
+			"você está prester a excluir uma proposta, deseja continuar",
+		);
+		api.delete(`proposta/${props.id_public}`, {
+			headers: { Authorization: `Bearer ${token}` },
+		})
+			.then((response) => {
+				alert("Proposta Removida com sucesso");
+			})
+			.catch((error) => {
+				alert(error.response.data.message);
+			});
+	}
+
+	function contratarProposta() {
+		api.patch(`proposta/${props.id_public}`, {
+			headers: { Authorization: `Bearer ${token}` },
+		})
+			.then(() => {
+				window.confirm("Confirma que deseja fazer a contratação?");
+			})
+			.catch((error) => {
+				alert(error.error.response.data.message);
+			});
+	}
+
 	const [open, setOpen] = useState(false);
 
 	return (
@@ -66,8 +100,18 @@ const CardProposta = ({ props }) => {
 				)}
 				{!props.contratado && (
 					<div className="buttons">
-						<button className="btn exluir">Excluir</button>
-						<button className="btn contratar">Contratar</button>
+						<button
+							className="btn exluir"
+							onClick={excluirProposta}
+						>
+							Excluir
+						</button>
+						<button
+							className="btn contratar"
+							onClick={contratarProposta}
+						>
+							Contratar
+						</button>
 					</div>
 				)}
 			</div>

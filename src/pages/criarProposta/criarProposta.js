@@ -1,11 +1,11 @@
 import Header from "../../components/Header";
-import ListaPropostas from "../../components/ListaPropostas";
 import { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import StoreContext from "../../components/Store/Context";
 
-import "./home.css";
-const Home = () => {
+import "./criarProposta.css";
+import FormProposta from "../../components/FormualrioProposta/FormProposta";
+const CriarProposta = () => {
 	const history = useHistory();
 	const { token } = useContext(StoreContext);
 	if (!token) {
@@ -16,9 +16,9 @@ const Home = () => {
 		<div>
 			<Header />
 			<div className="body">
-				<ListaPropostas />
+				<FormProposta />
 			</div>
 		</div>
 	);
 };
-export default Home;
+export default CriarProposta;

@@ -1,10 +1,10 @@
-import { useState } from "react";
+import TelaCadastro from "../../components/TelaCadastro/TelaCadastro";
 
 const Cadastro = () => {
 	return (
 		<div>
-			<div className="w-full flex flex-wrap"></div>
-			{/* <TelaCadastro /> */}
+			<div className="tela-login"></div>
+			<TelaCadastro />
 		</div>
 	);
 };
